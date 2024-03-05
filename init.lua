@@ -146,18 +146,15 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
+vim.opt.tabstop = 4
 
--- Show relative line numbers above and below current line
-vim.o.relativenumber = true
-vim.o.tabstop = 4
-
--- set default line-endings and encoding for new files
-vim.o.fileencoding = 'utf-8'
-vim.o.fileformat = 'unix'
-vim.api.nvim_create_autocmd("BufNewFile", {
-  pattern = "*",
-  command = "set fileformat=unix",
+vim.opt.fileencoding = 'utf-8'
+vim.opt.fileformat = 'unix'
+vim.api.nvim_create_autocmd('BufNewFile', {
+  pattern = '*',
+  command = 'set fileformat=unix',
 })
 
 -- [[ Basic Keymaps ]]
@@ -196,19 +193,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- My keymaps
-vim.keymap.set('n', '<leader>p', ':Explore<enter>', { desc = 'Return to file tree' })
-
--- Easer navigation with scandinavian keyboard
-vim.keymap.set("n", "ö", "<C-d>zz")
-vim.keymap.set("n", "ä", "<C-u>zz")
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<leader>p", ":E<Enter>")
+vim.keymap.set('n', 'ö', '<C-d>zz', { desc = 'Move down half screen' })
+vim.keymap.set('n', 'ä', '<C-u>zz', { desc = 'Move up half screen' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('n', '<leader>p', ':E<Enter>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -398,6 +387,7 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -557,17 +547,16 @@ require('lazy').setup {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        gopls = {},
+        rust_analyzer = {},
+        omnisharp = {},
+        tsserver = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
         --
 
         lua_ls = {
@@ -840,7 +829,7 @@ require('lazy').setup {
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  { import = 'custom.plugins.autoformat' },
+  -- { import = 'custom.plugins' },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
