@@ -197,7 +197,7 @@ vim.keymap.set('n', 'ö', '<C-d>zz', { desc = 'Move down half screen' })
 vim.keymap.set('n', 'ä', '<C-u>zz', { desc = 'Move up half screen' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
-vim.keymap.set('n', '<leader>p', ':E<Enter>')
+vim.keymap.set('n', '<leader>p', ':Explore<Enter>')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -330,7 +330,7 @@ require('lazy').setup {
       -- Useful for getting pretty icons, but requires special font.
       --  If you already have a Nerd Font, or terminal set up with fallback fonts
       --  you can enable this
-      -- { 'nvim-tree/nvim-web-devicons' }
+      { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
