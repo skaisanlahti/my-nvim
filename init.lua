@@ -199,6 +199,28 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>p', ':Explore<Enter>')
 
+-- WSL2 Clipboard Sync
+vim.g.clipboard = {
+  name = 'WslClipboard',
+  copy = {
+    ['+'] = { 'clip.exe' },
+    ['*'] = { 'clip.exe' },
+  },
+  paste = {
+    ['+'] = {
+      '/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe',
+      '-c',
+      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    ['*'] = {
+      '/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe',
+      '-c',
+      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+  },
+  cache_enabled = false,
+}
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
