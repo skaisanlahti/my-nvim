@@ -148,7 +148,7 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.tabstop = 4
+vim.opt.tabstop = 8
 
 vim.opt.fileencoding = 'utf-8'
 vim.opt.fileformat = 'unix'
@@ -195,6 +195,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', 'ö', '<C-d>zz', { desc = 'Move down half screen' })
 vim.keymap.set('n', 'ä', '<C-u>zz', { desc = 'Move up half screen' })
+vim.keymap.set('v', 'ö', '<C-d>zz', { desc = 'Move down half screen' })
+vim.keymap.set('v', 'ä', '<C-u>zz', { desc = 'Move up half screen' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>p', ':Explore<Enter>')
@@ -655,7 +657,15 @@ require('lazy').setup {
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
+        typescript = { { 'prettierd', 'prettier' } },
+        javascriptreact = { { 'prettierd', 'prettier' } },
+        typescriptreact = { { 'prettierd', 'prettier' } },
+        html = { { 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' } },
+        scss = { { 'prettierd', 'prettier' } },
+        json = { { 'prettierd', 'prettier' } },
+        sql = { { 'sql-formatter' } },
       },
     },
   },
@@ -852,6 +862,26 @@ require('lazy').setup {
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('oil').setup {
+        column = { 'icon' },
+        keymaps = {
+          ['<C-h>'] = false,
+        },
+        view_options = {
+          show_hidden = true,
+        },
+      }
+
+      vim.keymap.set('n', '<leader>p', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    end,
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
