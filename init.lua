@@ -682,15 +682,15 @@ require('lazy').setup(
           --
           -- You can use a sub-list to tell conform to run *until* a formatter
           -- is found.
-          javascript = { { 'prettierd', 'prettier' } },
-          typescript = { { 'prettierd', 'prettier' } },
-          javascriptreact = { { 'prettierd', 'prettier' } },
-          typescriptreact = { { 'prettierd', 'prettier' } },
-          html = { { 'prettierd', 'prettier' } },
-          css = { { 'prettierd', 'prettier' } },
-          scss = { { 'prettierd', 'prettier' } },
-          json = { { 'prettierd', 'prettier' } },
-          sql = { { 'sql-formatter' } },
+          javascript = { 'prettierd', 'prettier', stop_after_first = true },
+          typescript = { 'prettierd', 'prettier', stop_after_first = true },
+          javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+          typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+          html = { 'prettierd', 'prettier', stop_after_first = true },
+          css = { 'prettierd', 'prettier', stop_after_first = true },
+          scss = { 'prettierd', 'prettier', stop_after_first = true },
+          json = { 'prettierd', 'prettier', stop_after_first = true },
+          sql = { 'sql-formatter' },
           -- You can use 'stop_after_first' to run the first available formatter from the list
           -- javascript = { "prettierd", "prettier", stop_after_first = true },
         },
